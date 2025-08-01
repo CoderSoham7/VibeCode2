@@ -1,7 +1,21 @@
 import sys
 import os
-import streamlit as st
-import pandas as pd
+
+# --- Load spaCy from local wheel file ---
+# Path to the wheel file in the project root
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+spacy_wheel_path = os.path.join(project_root, 'spacy-3.8.7-cp310-cp310-win_amd64.whl')
+
+# Add the wheel file path to sys.path
+if spacy_wheel_path not in sys.path:
+    sys.path.insert(0, spacy_wheel_path)
+
+# Try importing spaCy
+try:
+    import spacy
+except ImportError:
+    import streamlit as st
+    st.error("❌ Failed to import spaCy from the wheel file. Please ensure it's compatible with the deployment environment.")
 
 # Add the 'src' directory to the system path to find the custom modules
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'src')))
