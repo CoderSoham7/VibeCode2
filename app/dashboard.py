@@ -1,11 +1,7 @@
-import spacy
-import subprocess
-
-try:
-    nlp = spacy.load("en_core_web_sm")
-except OSError:
-    subprocess.run(["python", "-m", "spacy", "download", "en_core_web_sm"])
-    nlp = spacy.load("en_core_web_sm")
+import sys
+import os
+import streamlit as st
+import pandas as pd
 
 # Add the 'src' directory to the system path to find the custom modules
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'src')))
